@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	- Application context definition for JPetStore's business layer.
+	- Contains bean references to the transaction manager and to the DAOs in
+	- dataAccessContext-local/jta.xml (see web.xml's "contextConfigLocation").
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+ 	<!--定义了提供方应用信息，用于计算依赖关系；在 dubbo-admin 或 dubbo-monitor 会显示这个名字，方便辨识 -->
+	<dubbo:application name="shopping-pay" owner="programmer" organization="dubbox" />
+	<!--向 zookeeper 订阅 provider 的地址，由 zookeeper 定时推送 -->
+	<dubbo:registry address="zookeeper://localhost:2181"  check="false" />
+	<!-- 用dubbo协议在20880端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="20881" />
+	
+	<!-- (配置服务提供者)提供服务方的接口 -->
+	<dubbo:service interface="com.service.pay.PayService"  ref="payService" protocol="dubbo"></dubbo:service>
+	<bean id="payService" class="com.pay.impl.PayServiceImpl"></bean>
+	
+	
+	<!-- (配置消费者) -->
+	<dubbo:reference interface="com.service.order.OrderReadService" id="orderReadService"></dubbo:reference>
+	<dubbo:reference interface="com.service.order.OrderWriterService" id="orderWriterService"></dubbo:reference>
+</beans>
