@@ -1,3 +1,1 @@
-# dubbo-shopping
-dubbo-shopping例子
-测试例子
+详细介绍请参考：https://www.cnblogs.com/cq-jiang/p/8732831.html
