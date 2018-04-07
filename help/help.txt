@@ -1,15 +1,3 @@
 http://127.0.0.1:8081/shopping-pay/pay/orderList.do?id=10
 
 http://127.0.0.1:8082/shopping-order/order/pay.do?id=123
-
-分布式系统架构实战demo:SSM+Dubbo
-https://my.oschina.net/liughDevelop/blog/1480061#0-sqq-1-469-9737f6f9e09dfaf5d3fd14d775bfee85
-
-dubbo 既是提供方又是消费方的问题
-https://blog.csdn.net/q596333033/article/details/78573741
-
-dubbo 知识总结 dubbo配置参考
-https://blog.csdn.net/abcde474524573/article/details/53026110
-
-在Eclipse中创建Tomcat服务器
-https://blog.csdn.net/iferrorreturnnull/article/details/51804812
